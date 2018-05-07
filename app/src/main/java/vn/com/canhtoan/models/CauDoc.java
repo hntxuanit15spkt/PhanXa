@@ -3,12 +3,12 @@ package vn.com.canhtoan.models;
 public class CauDoc {
     private String sentence;
     private int sound;
-    private int thoiGianDoc;
+    private int time;
 
-    public CauDoc(String sentence, int sound, int thoiGianDoc) {
+    public CauDoc(String sentence, int sound, int time) {
         this.setSentence(sentence);
         this.setSound(sound);
-        this.setThoiGianDoc(thoiGianDoc);
+        this.setTime(time);
     }
 
 
@@ -28,11 +28,12 @@ public class CauDoc {
         this.sound = sound;
     }
 
-    public int getThoiGianDoc() {
-        return thoiGianDoc;
+
+    public int getTime() {
+        return time;
     }
 
-    public void setThoiGianDoc(int thoiGianDoc) {
-        this.thoiGianDoc = thoiGianDoc;
+    public void setTime(int time) {
+        this.time = time;
     }
 }
