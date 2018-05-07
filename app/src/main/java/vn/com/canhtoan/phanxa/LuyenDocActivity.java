@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import vn.com.canhtoan.models.LuyenDoc;
+import vn.com.canhtoan.models.CauDoc;
 
 public class LuyenDocActivity extends AppCompatActivity {
 
@@ -18,7 +18,7 @@ public class LuyenDocActivity extends AppCompatActivity {
     TextView txtCauNoi, txtIndex;
     Intent intent1, intent2;
 
-    ArrayList<LuyenDoc> listLuyenDoc;
+    ArrayList<CauDoc> listLuyenDoc;
     int position;
 
     MediaPlayer mediaPlayer;
@@ -73,7 +73,7 @@ public class LuyenDocActivity extends AppCompatActivity {
 
         txtIndex.setText(position+1+"");
 
-        listLuyenDoc = new ArrayList<LuyenDoc>();
+        listLuyenDoc = new ArrayList<CauDoc>();
         addlistLuyenDoc();
 
         intent1 = new Intent(LuyenDocActivity.this, MainActivity.class);
@@ -86,10 +86,10 @@ public class LuyenDocActivity extends AppCompatActivity {
     }
 
     private void addlistLuyenDoc() {
-        listLuyenDoc.add(new LuyenDoc("Beautiful In White", R.raw.beautifulinwhite_shanefilan));
-        listLuyenDoc.add(new LuyenDoc("Cô Gái 1m52?", R.raw.cogai1m52));
-        listLuyenDoc.add(new LuyenDoc("It's My life", R.raw.itsmylife_bonjovi));
-        listLuyenDoc.add(new LuyenDoc("Nothing Gonna Change My Love", R.raw.nothinggonnachangemylove_westlife));
-        listLuyenDoc.add(new LuyenDoc("Sweet Dream", R.raw.sweetdream_jangnara));
+        listLuyenDoc.add(new CauDoc("Beautiful In White", R.raw.beautifulinwhite_shanefilan, 10));
+        /*listLuyenDoc.add(new CauDoc("Cô Gái 1m52?", R.raw.cogai1m52));
+        listLuyenDoc.add(new CauDoc("It's My life", R.raw.itsmylife_bonjovi));
+        listLuyenDoc.add(new CauDoc("Nothing Gonna Change My Love", R.raw.nothinggonnachangemylove_westlife));
+        listLuyenDoc.add(new CauDoc("Sweet Dream", R.raw.sweetdream_jangnara));*/
     }
 }
