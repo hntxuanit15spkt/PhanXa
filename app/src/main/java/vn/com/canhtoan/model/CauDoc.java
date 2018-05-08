@@ -1,4 +1,4 @@
-package vn.com.canhtoan.models;
+package vn.com.canhtoan.model;
 
 public class CauDoc {
     private String sentence;

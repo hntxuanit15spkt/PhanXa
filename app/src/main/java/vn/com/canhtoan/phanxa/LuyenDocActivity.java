@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import vn.com.canhtoan.models.CauDoc;
+import vn.com.canhtoan.model.CauDoc;
 
 public class LuyenDocActivity extends AppCompatActivity {
 
