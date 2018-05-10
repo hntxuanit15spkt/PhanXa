@@ -1,5 +1,8 @@
 package vn.com.canhtoan.Database.DataAccessObject;
 
-public class CauDocDAO {
+import android.arch.persistence.room.Dao;
+
+@Dao
+public interface CauDocDAO {
 
 }

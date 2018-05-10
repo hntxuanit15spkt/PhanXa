@@ -7,14 +7,17 @@ import android.support.annotation.NonNull;
 import java.sql.Time;
 
 @Entity
-public class MucDoEntity {
+public class CauPhanXaEntity {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     public int id;
 
-    public int level_number;
+    public String question;
+
+    public String answer;
+
+    public Time time;
 
     @NonNull
-    public int id_leveltype;
-
+    public int id_mucdo;
 }

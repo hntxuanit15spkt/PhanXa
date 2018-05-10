@@ -4,17 +4,16 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import java.util.Date;
-
 @Entity
-public class UserEntity {
-    @PrimaryKey (autoGenerate = true)
+public class CauDocEntity {
+
+    @PrimaryKey(autoGenerate = true)
     @NonNull
-    public Integer id;
+    public int id;
 
-    public Date dateUsed;
+    public String sentence;
 
-    public Date start_time;
+    public int sound;
 
-    public Date end_time;
+    public int time;
 }

@@ -1,4 +1,7 @@
 package vn.com.canhtoan.Database.DataAccessObject;
 
-public class MucDoDAO {
+import android.arch.persistence.room.Dao;
+
+@Dao
+public interface MucDoDAO {
 }
