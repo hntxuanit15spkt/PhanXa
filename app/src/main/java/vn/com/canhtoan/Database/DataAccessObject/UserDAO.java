@@ -18,17 +18,22 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 public interface UserDAO {
 
     @Query("select * from UserEntity where id = :id")
-    UserEntity loadUserEntityById(int id);
+    //public UserEntity getUserEntityById(int id);
+    LiveData<UserEntity> getUserById(int id);
+
 
     @Query("SELECT * FROM UserEntity")
     LiveData<List<UserEntity>> getAllUsers();
 
     @Insert(onConflict = REPLACE)
-    void insertUser(UserEntity user);
+    public void insertUser(UserEntity user);
+
+    @Insert(onConflict = REPLACE)
+    public void insertUsers(UserEntity... users);
 
     @Update
-    void updateUser(UserEntity user);
+    public int updateUser(UserEntity user);
 
     @Delete
-    void deleteUser(UserEntity user);
+    public int deleteUser(UserEntity user);
 }
