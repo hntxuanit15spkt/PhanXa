@@ -29,8 +29,10 @@ import vn.com.canhtoan.Database.Entity.UserEntity;
 import vn.com.canhtoan.Database.Entity.User_CauDocEntity;
 import vn.com.canhtoan.Database.Entity.User_CauPhanXaEntity;
 
-@Database(entities = {CauDocCuaNguoiHocEntity.class, CauDocEntity.class, CauPhanXaEntity.class, LoaiMucDoEntity.class,
-        MucDoEntity.class, User_CauDocEntity.class, User_CauPhanXaEntity.class, UserEntity.class}, version = 1)
+@Database(entities = {CauDocCuaNguoiHocEntity.class, CauDocEntity.class,
+        CauPhanXaEntity.class, LoaiMucDoEntity.class,
+        MucDoEntity.class, User_CauDocEntity.class,
+        User_CauPhanXaEntity.class, UserEntity.class}, version = 1)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -52,9 +54,28 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract CauPhanXaDAO cauphanxaDao();
 
-    private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
+    //private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
 
-    public static AppDatabase getInMemoryDatabase(Context context) {
+    public static AppDatabase getDatabase(final Context context)
+    {
+        if(INSTANCE == null)
+        {
+            synchronized (AppDatabase.class) {
+                if (INSTANCE == null)
+                {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                            AppDatabase.class, "PhanXa_Database")
+                            .build();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+    /**
+     * Tham khảo
+     */
+    /*public static AppDatabase getInMemoryDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE =
                     Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase.class)
@@ -64,7 +85,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             .build();
         }
         return INSTANCE;
-    }
+    }*/
 
     public static void destroyInstance() {
         INSTANCE = null;

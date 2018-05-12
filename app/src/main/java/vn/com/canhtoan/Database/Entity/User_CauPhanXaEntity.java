@@ -1,11 +1,13 @@
 package vn.com.canhtoan.Database.Entity;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.support.annotation.NonNull;
 
 import java.sql.Time;
 
-@Entity
+@Entity(foreignKeys = {@ForeignKey(entity = UserEntity.class, parentColumns = "id", childColumns = "id_user"),
+@ForeignKey(entity = CauPhanXaEntity.class, parentColumns = "id", childColumns = "id_cauphanxa")})
 public class User_CauPhanXaEntity {
 
     @NonNull
