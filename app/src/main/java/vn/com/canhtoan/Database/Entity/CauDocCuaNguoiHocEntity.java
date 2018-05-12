@@ -17,9 +17,9 @@ public class CauDocCuaNguoiHocEntity {
 
     public int sound;
 
-    public Time time_user;
+    public double time_user;
 
-    public Time time_recommended;
+    public double time_recommended;
 
     @NonNull
     public int id_user;

@@ -17,7 +17,7 @@ public class CauPhanXaEntity {
 
     public String answer;
 
-    public Time time;
+    public double time;
 
     @NonNull
     public int id_mucdo;
