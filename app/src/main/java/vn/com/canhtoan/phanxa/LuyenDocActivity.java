@@ -15,13 +15,15 @@ import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Locale;
+import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     ImageButton btnLuyenDocBack, btnLuyenDocSound, btnLuyenDocNext, btnLuyenDocSpeak;
     TextView txtCauNoi, txtIndex;
     Intent intent1, intent2;
-
+    Random rand;
     ArrayList<String> myList = new ArrayList<>();
 
     BufferedReader bufferedReader;
@@ -102,12 +104,23 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
 
     //Version cua Xuan
     private void evNext() {
-        if(position < myList.size())
+        int sizeMyList = myList.size();
+        int randomIndex;
+        rand = new Random();
+        if(sizeMyList > 0)
         {
-            line = myList.get(position);
-            txtCauNoi.setText(line);
-            txtIndex.setText(position + "");
-            position++;
+            if(sizeMyList == 1)
+            {
+                line = myList.get(0);
+                myList.remove(myList.get(0));
+            }
+            else {
+                randomIndex = rand.nextInt(sizeMyList - 1) + 1;
+                line = myList.get(randomIndex);
+                txtCauNoi.setText(line);
+                myList.remove(myList.get(randomIndex));
+            }
+
         }
         else {
             startActivity(intent2);
