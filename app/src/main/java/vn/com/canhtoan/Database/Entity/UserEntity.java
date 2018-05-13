@@ -2,7 +2,6 @@ package vn.com.canhtoan.Database.Entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 
@@ -12,7 +11,7 @@ import vn.com.canhtoan.Database.Converter.DateConverter;
 
 @Entity
 public class UserEntity {
-    @PrimaryKey (autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     public Integer id;
 

@@ -1,15 +1,10 @@
 package vn.com.canhtoan.Database;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.VisibleForTesting;
 
 import vn.com.canhtoan.Database.Converter.DateConverter;
 import vn.com.canhtoan.Database.DataAccessObject.CauDocCuaNguoiHocDAO;
@@ -38,31 +33,10 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
 
-    public abstract CauDocCuaNguoiHocDAO productDao();
-
-    public abstract User_CauPhanXaDAO user_cauPhanXa();
-
-    public abstract UserDAO userDAO();
-
-    public abstract User_CauDocDAO user_cauDocDAO();
-
-    public abstract MucDoDAO mucDoDAO();
-
-    public abstract LoaiMucDoDAO loaiMucDoDAO();
-
-    public abstract CauDocDAO cauDocDAO();
-
-    public abstract CauPhanXaDAO cauphanxaDao();
-
-    //private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
-
-    public static AppDatabase getDatabase(final Context context)
-    {
-        if(INSTANCE == null)
-        {
+    public static AppDatabase getDatabase(final Context context) {
+        if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
-                if (INSTANCE == null)
-                {
+                if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, "PhanXa_Database.db")
                             .build();
@@ -86,8 +60,25 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }*/
-
     public static void destroyInstance() {
         INSTANCE = null;
     }
+
+    public abstract CauDocCuaNguoiHocDAO productDao();
+
+    public abstract User_CauPhanXaDAO user_cauPhanXa();
+
+    public abstract UserDAO userDAO();
+
+    public abstract User_CauDocDAO user_cauDocDAO();
+
+    public abstract MucDoDAO mucDoDAO();
+
+    public abstract LoaiMucDoDAO loaiMucDoDAO();
+
+    //private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
+
+    public abstract CauDocDAO cauDocDAO();
+
+    public abstract CauPhanXaDAO cauphanxaDao();
 }
