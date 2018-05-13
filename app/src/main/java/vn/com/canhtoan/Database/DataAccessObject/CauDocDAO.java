@@ -10,7 +10,6 @@ import android.arch.persistence.room.Update;
 import java.util.List;
 
 import vn.com.canhtoan.Database.Entity.CauDocEntity;
-import vn.com.canhtoan.Database.Entity.UserEntity;
 
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 

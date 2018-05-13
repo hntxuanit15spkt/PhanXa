@@ -16,4 +16,37 @@ public class CauDocEntity {
     public int sound;
 
     public int time;
+
+    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public String getSentence() {
+        return sentence;
+    }
+
+    public int getSound() {
+        return sound;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
+    }
+
+    public void setSentence(String sentence) {
+        this.sentence = sentence;
+    }
+
+    public void setSound(int sound) {
+        this.sound = sound;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
 }

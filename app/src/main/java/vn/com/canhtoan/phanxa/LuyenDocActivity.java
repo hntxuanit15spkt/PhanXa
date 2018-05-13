@@ -3,38 +3,46 @@ package vn.com.canhtoan.phanxa;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
+=======
+import android.os.Bundle;
+>>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.Locale;
-
-import vn.com.canhtoan.model.CauDoc;
+import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     ImageButton btnLuyenDocBack, btnLuyenDocSound, btnLuyenDocNext, btnLuyenDocPrevous, btnLuyenDocSpeak;
     TextView txtCauNoi, txtLoiNoi, txtIndex;
     Intent intent1, intent2;
+    Random rand;
+    ArrayList<String> myList = new ArrayList<>();
 
     ArrayList<String> listCau;
     BufferedReader bufferedReader;
     String line;
+<<<<<<< HEAD
     int position=1, soCauDung = 0, perfect = 0, timeout = 2000, cauHienTai = 1;
     boolean docDungLanThuNhat = true, docLanThuNhat = true;
+=======
+
+    int position = 1;
+>>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
 
     TextToSpeech mTts;
 
@@ -42,6 +50,9 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_luyen_doc);
+
+        //myList = (ArrayList<String>) getIntent().getSerializableExtra("lines");
+        myList = getIntent().getExtras().getStringArrayList("lines");
         addControls();
         addEvents();
     }
@@ -142,19 +153,27 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
     }
 
     // Ever next that is set next value from txt file into textview to display for speak practice
+<<<<<<< HEAD
+=======
+    //Version cua Toan
+>>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
     /*private void evNext() {
         position++;
-        if (position <= 10){
+        if (position <= 10) {
             try {
                 line = bufferedReader.readLine();
                 txtCauNoi.setText(line);
+<<<<<<< HEAD
                 txtIndex.setText(position+"/10");
                 docDungLanThuNhat = true;
                 speakText();
+=======
+                txtIndex.setText(position + "");
+>>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else {
+        } else {
             try {
                 bufferedReader.close();
             } catch (IOException e) {
@@ -164,6 +183,7 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
         }
     }*/
 
+<<<<<<< HEAD
     // Seeson 2
     private void evNext() {
         position++;
@@ -195,6 +215,48 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
             finishLuyenDoc();
         }
     }
+=======
+    //Version cua Xuan
+    private void evNext() {
+        int sizeMyList = myList.size();
+        int randomIndex;
+        rand = new Random();
+        if(sizeMyList > 0)
+        {
+            if(sizeMyList == 1)
+            {
+                line = myList.get(0);
+                myList.remove(myList.get(0));
+            }
+            else {
+                randomIndex = rand.nextInt(sizeMyList - 1) + 1;
+                line = myList.get(randomIndex);
+                txtCauNoi.setText(line);
+                myList.remove(myList.get(randomIndex));
+            }
+
+        }
+        else {
+            startActivity(intent2);
+        }
+    }
+
+
+    private void addControls() {
+        btnLuyenDocBack = findViewById(R.id.btnLuyenDocBack);
+        btnLuyenDocNext = findViewById(R.id.btnLuyenDocNext);
+        btnLuyenDocSound = findViewById(R.id.btnLuyenDocSound);
+        btnLuyenDocSpeak = findViewById(R.id.btnLuyenDocSpeak);
+        txtCauNoi = findViewById(R.id.txtCauNoi);
+        txtIndex = findViewById(R.id.txtIndex);
+
+        //txtIndex.setText(position+1+"");
+
+        //listLuyenDoc = new ArrayList<CauDoc>();
+        //addlistLuyenDoc();
+        addCauDau();// Gán giá trị đầu tiên trong file txt vào textview để luyện đọc câu đầu
+        generateTextToSpeech();
+>>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
 
     private void evPrevous() {
         position--;
@@ -212,9 +274,13 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
 
     /*Set first value in textview*/
     /*private void addCauDau() {
+<<<<<<< HEAD
         InputStream inputStream             = getResources().openRawResource(R.raw.danhsachcau);
+=======
+        InputStream inputStream = getResources().openRawResource(R.raw.danhsachcau);
+>>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        bufferedReader                      = new BufferedReader(inputStreamReader);
+        bufferedReader = new BufferedReader(inputStreamReader);
         try {
             line = bufferedReader.readLine();
             txtCauNoi.setText(line);
@@ -225,6 +291,7 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
         }
     }*/
 
+<<<<<<< HEAD
     // addCauDau Season 2 --> Ứng với evNext2
     private void addData() {
         InputStream inputStream             = getResources().openRawResource(R.raw.danhsachcau);
@@ -245,6 +312,11 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
         } catch (IOException e) {
             e.printStackTrace();
         }
+=======
+    private void addCauDau() {
+        line = myList.get(0);
+        txtCauNoi.setText(line);
+>>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
     }
 
     // Create a function Speech to text
@@ -255,23 +327,25 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, sentence);
         try {
             startActivityForResult(intent, 10);
-        } catch (ActivityNotFoundException a){
+        } catch (ActivityNotFoundException a) {
             Toast.makeText(getApplicationContext(), "Device not suppost", Toast.LENGTH_SHORT).show();
         }
     }
+
     // Create a function Text to speech
-    public void generateTextToSpeech(){
+    public void generateTextToSpeech() {
         Intent intent = new Intent();
         intent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
         startActivityForResult(intent, 88);
     }
+
     // Return result that is text from speech
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
-            case 10 :{
-                if (resultCode == RESULT_OK && null != data){
+        switch (requestCode) {
+            case 10: {
+                if (resultCode == RESULT_OK && null != data) {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     //txtResult.setText(result.get(0));
                     txtLoiNoi.setText(result.get(0));
@@ -279,8 +353,8 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
                 }
             }
         }
-        if (requestCode == 88){
-            if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS){
+        if (requestCode == 88) {
+            if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
                 mTts = new TextToSpeech(LuyenDocActivity.this, this);
                 /*mTts.setLanguage(Locale.US);*/
             } else {
@@ -290,6 +364,12 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
             }
         }
     }
+<<<<<<< HEAD
+=======
+
+    @Override
+    public void onInit(int status) {
+>>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
 
     private void testResult(ArrayList result) {
         String input = (String) result.get(0);

@@ -1,9 +1,8 @@
 package vn.com.canhtoan.phanxa;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -11,6 +10,7 @@ public class LuyenPhanXaActivity extends AppCompatActivity {
 
     ImageButton btnLuyenPhanXaBack, btnLuyenPhanXaRecorder;
     TextView txtCoutdown, txtCauHoi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +29,9 @@ public class LuyenPhanXaActivity extends AppCompatActivity {
     }
 
     private void addControls() {
-        txtCauHoi               = findViewById(R.id.txtCauHoi);
-        txtCoutdown             = findViewById(R.id.txtCountDown);
-        btnLuyenPhanXaBack      = findViewById(R.id.btnLuyenPhanXaBack);
-        btnLuyenPhanXaRecorder  = findViewById(R.id.btnLuyenPhanXaRecorder);
+        txtCauHoi = findViewById(R.id.txtCauHoi);
+        txtCoutdown = findViewById(R.id.txtCountDown);
+        btnLuyenPhanXaBack = findViewById(R.id.btnLuyenPhanXaBack);
+        btnLuyenPhanXaRecorder = findViewById(R.id.btnLuyenPhanXaRecorder);
     }
 }

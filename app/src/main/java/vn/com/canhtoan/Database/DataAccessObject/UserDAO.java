@@ -11,14 +11,13 @@ import java.util.List;
 
 import vn.com.canhtoan.Database.Entity.UserEntity;
 
-import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
 @Dao
 public interface UserDAO {
 
     @Query("select * from UserEntity where id = :id")
-    //public UserEntity getUserEntityById(int id);
+        //public UserEntity getUserEntityById(int id);
     LiveData<UserEntity> getUserById(int id);
 
 

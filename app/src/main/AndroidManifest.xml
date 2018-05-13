@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="vn.com.canhtoan.phanxa">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />﻿
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,9 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FileChooserActivity" />
         <activity android:name=".LuyenDocActivity" />
         <activity android:name=".LuyenPhanXaActivity" />
-        <activity android:name=".ChuyenTiepActivity"
+        <activity
+            android:name=".ChuyenTiepActivity"
             android:theme="@style/Base.Theme.AppCompat.Light.Dialog"></activity>
     </application>
 

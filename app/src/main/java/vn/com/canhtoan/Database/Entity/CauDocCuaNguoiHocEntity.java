@@ -5,9 +5,7 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import java.sql.Time;
-
-@Entity(foreignKeys = @ForeignKey(entity = UserEntity.class, parentColumns = "id", childColumns="id_user"))
+@Entity(foreignKeys = @ForeignKey(entity = UserEntity.class, parentColumns = "id", childColumns = "id_user"))
 public class CauDocCuaNguoiHocEntity {
     @PrimaryKey(autoGenerate = true)
     @NonNull
