@@ -13,10 +13,8 @@ import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
-import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Random;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
@@ -107,22 +105,18 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
         int sizeMyList = myList.size();
         int randomIndex;
         rand = new Random();
-        if(sizeMyList > 0)
-        {
-            if(sizeMyList == 1)
-            {
+        if (sizeMyList > 0) {
+            if (sizeMyList == 1) {
                 line = myList.get(0);
                 myList.remove(myList.get(0));
-            }
-            else {
+            } else {
                 randomIndex = rand.nextInt(sizeMyList - 1) + 1;
                 line = myList.get(randomIndex);
                 txtCauNoi.setText(line);
                 myList.remove(myList.get(randomIndex));
             }
 
-        }
-        else {
+        } else {
             startActivity(intent2);
         }
     }
