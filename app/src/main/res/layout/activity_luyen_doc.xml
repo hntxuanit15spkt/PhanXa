@@ -27,7 +27,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:src="?attr/homeAsUpIndicator" />
+                android:src="@drawable/back"
+                android:background="@color/colorPrimary"/>
 
         </LinearLayout>
 
@@ -45,7 +46,11 @@
                 android:layout_marginRight="15dp"
                 android:text="1"
                 android:textColor="@color/colorAccent"
+<<<<<<< HEAD
+                android:text="1/10" />
+=======
                 android:textSize="25sp" />
+>>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
         </LinearLayout>
 
     </LinearLayout>
@@ -54,8 +59,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
+<<<<<<< HEAD
+        android:weightSum="3"
+        android:orientation="vertical">
+=======
         android:orientation="vertical"
         android:weightSum="2">
+>>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,6 +87,28 @@
         </LinearLayout>
 
         <LinearLayout
+<<<<<<< HEAD
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <TextView
+                android:id="@+id/txtLoiNoi"
+                android:text="Câu người học nói vào"
+                android:textSize="25sp"
+                android:textStyle="italic"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_weight="1"
+=======
+>>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -87,14 +119,17 @@
                 android:id="@+id/btnLuyenDocSound"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/background_light"
-                app:srcCompat="@drawable/head" />
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/sound" />
 
             <ImageButton
                 android:id="@+id/btnLuyenDocSpeak"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/presence_audio_busy" />
+                android:layout_marginLeft="10dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/microphone" />
 
         </LinearLayout>
 
@@ -104,15 +139,44 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:weightSum="2"
         android:gravity="center"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/btnLuyenDocNext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/background_light"
-            app:srcCompat="@drawable/next" />
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnLuyenDocPrevous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/prevous" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnLuyenDocNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/next" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

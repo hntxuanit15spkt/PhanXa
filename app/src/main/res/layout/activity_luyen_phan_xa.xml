@@ -27,7 +27,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:src="?attr/homeAsUpIndicator" />
+                android:background="@color/colorPrimary"
+                android:src="@drawable/back" />
 
         </LinearLayout>
 
@@ -89,8 +90,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@android:color/background_light"
-            app:srcCompat="@drawable/mic" />
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/microphone" />
 
     </LinearLayout>
 </LinearLayout>
