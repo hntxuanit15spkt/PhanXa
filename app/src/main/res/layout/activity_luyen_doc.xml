@@ -44,13 +44,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginRight="15dp"
-                android:text="1"
                 android:textColor="@color/colorAccent"
-<<<<<<< HEAD
-                android:text="1/10" />
-=======
+                android:text="1/10"
                 android:textSize="25sp" />
->>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
+
         </LinearLayout>
 
     </LinearLayout>
@@ -59,13 +56,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
-<<<<<<< HEAD
         android:weightSum="3"
         android:orientation="vertical">
-=======
         android:orientation="vertical"
         android:weightSum="2">
->>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,7 +81,6 @@
         </LinearLayout>
 
         <LinearLayout
-<<<<<<< HEAD
             android:layout_weight="1"
             android:gravity="center"
             android:layout_width="match_parent"
@@ -107,12 +100,8 @@
         <LinearLayout
             android:gravity="center"
             android:layout_weight="1"
-=======
->>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
             android:orientation="horizontal">
 
             <ImageButton
