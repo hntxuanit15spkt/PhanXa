@@ -154,13 +154,10 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
             try {
                 line = bufferedReader.readLine();
                 txtCauNoi.setText(line);
-<<<<<<< HEAD
                 txtIndex.setText(position+"/10");
                 docDungLanThuNhat = true;
                 speakText();
-=======
                 txtIndex.setText(position + "");
->>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -258,11 +255,8 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
 
     /*Set first value in textview*/
     /*private void addCauDau() {
-<<<<<<< HEAD
         InputStream inputStream             = getResources().openRawResource(R.raw.danhsachcau);
-=======
         InputStream inputStream = getResources().openRawResource(R.raw.danhsachcau);
->>>>>>> 9357dfa74b3399a10eb09114d0fe4c7e2836fc49
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         bufferedReader = new BufferedReader(inputStreamReader);
         try {
