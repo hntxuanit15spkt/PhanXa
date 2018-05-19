@@ -214,23 +214,3 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
