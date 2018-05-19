@@ -134,7 +134,7 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
 
     // Auto start Speech to text
     private void startAutoSpeech() {
-        CountDownTimer timer = new CountDownTimer(timeout, 1000) {
+        CountDownTimer timer = new CountDownTimer(timeout, timeout) {
             @Override
             public void onTick(long millisUntilFinished) {
 
