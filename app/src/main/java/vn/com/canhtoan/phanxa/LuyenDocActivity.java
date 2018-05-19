@@ -3,10 +3,6 @@ package vn.com.canhtoan.phanxa;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
-<<<<<<< HEAD
-=======
-import android.media.MediaPlayer;
->>>>>>> 7e0b16d201cbdbc46169bdc20702be4c41a0197d
 import android.os.CountDownTimer;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -25,11 +21,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
-<<<<<<< HEAD
-
-import javax.security.auth.Destroyable;
-=======
->>>>>>> 7e0b16d201cbdbc46169bdc20702be4c41a0197d
 
 public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
@@ -42,12 +33,8 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
     ArrayList<String> listCau;
     BufferedReader bufferedReader;
     String line;
-<<<<<<< HEAD
 
     int position = 1, soCauDung = 0, perfect = 0, timeout = 2500, cauHienTai = 1;
-=======
-    int position=1, soCauDung = 0, perfect = 0, timeout = 2000, cauHienTai = 1;
->>>>>>> 7e0b16d201cbdbc46169bdc20702be4c41a0197d
     boolean docDungLanThuNhat = true, docLanThuNhat = true;
 
     TextToSpeech mTts;
@@ -168,34 +155,8 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
     }
 
     // Ever next that is set next value from txt file into textview to display for speak practice
-<<<<<<< HEAD
-=======
     //Version cua Toan
-
-    /*private void evNext() {
-        position++;
-        if (position <= 10) {
-            try {
-                line = bufferedReader.readLine();
-                txtCauNoi.setText(line);
-                txtIndex.setText(position+"/10");
-                docDungLanThuNhat = true;
-                speakText();
-                txtIndex.setText(position + "");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            try {
-                bufferedReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            finishLuyenDoc();
-        }
-    }*/
     // Seeson 2
->>>>>>> 7e0b16d201cbdbc46169bdc20702be4c41a0197d
     private void evNext() {
         position++;
         if (position <= listCau.size()) {
@@ -212,10 +173,7 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
             finishLuyenDoc();
         }
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 7e0b16d201cbdbc46169bdc20702be4c41a0197d
     //Version cua Xuan
     /*private void evNext() {
         int sizeMyList = myList.size();
@@ -236,26 +194,6 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
             startActivity(intent2);
         }
     }*/
-<<<<<<< HEAD
-=======
-
-
-    /*private void addControls() {
-        btnLuyenDocBack = findViewById(R.id.btnLuyenDocBack);
-        btnLuyenDocNext = findViewById(R.id.btnLuyenDocNext);
-        btnLuyenDocSound = findViewById(R.id.btnLuyenDocSound);
-        btnLuyenDocSpeak = findViewById(R.id.btnLuyenDocSpeak);
-        txtCauNoi = findViewById(R.id.txtCauNoi);
-        txtIndex = findViewById(R.id.txtIndex);
-
-        //txtIndex.setText(position+1+"");
-
-        //listLuyenDoc = new ArrayList<CauDoc>();
-        //addlistLuyenDoc();
-        addCauDau();// Gán giá trị đầu tiên trong file txt vào textview để luyện đọc câu đầu
-        generateTextToSpeech();
-    }*/
->>>>>>> 7e0b16d201cbdbc46169bdc20702be4c41a0197d
 
     private void evPrevous() {
         position--;
@@ -271,24 +209,6 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
         }
     }
 
-<<<<<<< HEAD
-=======
-    /*Set first value in textview*/
-    /*private void addCauDau() {
-        InputStream inputStream             = getResources().openRawResource(R.raw.danhsachcau);
-        InputStream inputStream = getResources().openRawResource(R.raw.danhsachcau);
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        bufferedReader = new BufferedReader(inputStreamReader);
-        try {
-            line = bufferedReader.readLine();
-            txtCauNoi.setText(line);
-            inputStream.close();
-            inputStreamReader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
->>>>>>> 7e0b16d201cbdbc46169bdc20702be4c41a0197d
     // addCauDau Season 2 --> Ứng với evNext2
     private void addData() {
         InputStream inputStream = getResources().openRawResource(R.raw.danhsachcau);
@@ -307,11 +227,7 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
             e.printStackTrace();
         }
     }
-<<<<<<< HEAD
-   /* private void addCauDau() {
-=======
     /*private void addCauDau() {
->>>>>>> 7e0b16d201cbdbc46169bdc20702be4c41a0197d
         line = myList.get(0);
         txtCauNoi.setText(line);
     }*/
