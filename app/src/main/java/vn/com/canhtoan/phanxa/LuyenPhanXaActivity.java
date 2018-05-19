@@ -43,8 +43,9 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
         btnLuyenPhanXaNext = findViewById(R.id.btnLuyenPhanXaNext);
         btnLuyenPhanXaSound = findViewById(R.id.btnLuyenPhanXaSound);
         intent = new Intent(LuyenPhanXaActivity.this, MainActivity.class);
+        dsCauPhanXa = new ArrayList<CauPhanXa>();
         addData(dsCauPhanXa);
-
+        generateTextToSpeech();
         startLuyenDoc();
     }
 
@@ -134,6 +135,13 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
         }
     }
 
+    // Create a function Text to speech
+    public void generateTextToSpeech() {
+        Intent intent = new Intent();
+        intent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
+        startActivityForResult(intent, 88);
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
@@ -141,6 +149,10 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
                 if (resultCode == RESULT_OK && null != data) {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     testResult(result);
+                }
+                else {
+                    Toast.makeText(LuyenPhanXaActivity.this, "Không có câu trả lời!", Toast.LENGTH_SHORT).show();
+                    btnLuyenPhanXaNext.setVisibility(View.VISIBLE);
                 }
             }
             case 88: {
@@ -187,7 +199,7 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
     private void addData(ArrayList<CauPhanXa> dsCauPhanXa) {
         dsCauPhanXa.add(new CauPhanXa("What is your name?","John", "My name is John"));
         dsCauPhanXa.add(new CauPhanXa("What is your job?","Student", "I am a student"));
-        dsCauPhanXa.add(new CauPhanXa("Do you have a girl friend?","No", "No, i do not"));
+        dsCauPhanXa.add(new CauPhanXa("Do you have a girl friend?","No", "No I do not"));
         dsCauPhanXa.add(new CauPhanXa("How are you?","I am fine", "Fine"));
         dsCauPhanXa.add(new CauPhanXa("How old are you?","eighteen", "I am eighteen years old"));
         dsCauPhanXa.add(new CauPhanXa("Where are you from?","Viet Nam", "I from Viet Nam"));
@@ -202,23 +214,3 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
