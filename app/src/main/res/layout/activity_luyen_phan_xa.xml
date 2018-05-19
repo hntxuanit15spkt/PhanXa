@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:background="@color/colorPrimary"
+                android:background="@android:color/transparent"
                 android:src="@drawable/back" />
 
         </LinearLayout>
@@ -38,15 +38,14 @@
             android:layout_weight="1"
             android:gravity="right">
 
-            <TextView
-                android:id="@+id/txtCountDown"
+            <ImageButton
+                android:id="@+id/btnLuyenPhanXaNext"
+                android:src="@drawable/right"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="15dp"
-                android:text="Count down"
-                android:textColor="@color/colorAccent"
-                android:textSize="25sp" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </LinearLayout>
@@ -64,7 +63,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="Câu hỏi hiển thị ở đây nè"
             android:textColor="@android:color/holo_red_light"
             android:textSize="30sp" />
 
@@ -86,12 +84,12 @@
         android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/btnLuyenPhanXaRecorder"
+            android:id="@+id/btnLuyenPhanXaSound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@android:color/transparent"
-            app:srcCompat="@drawable/microphone" />
+            app:srcCompat="@drawable/sound" />
 
     </LinearLayout>
 </LinearLayout>

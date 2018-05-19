@@ -23,9 +23,6 @@
         <activity android:name=".FileChooserActivity" />
         <activity android:name=".LuyenDocActivity" />
         <activity android:name=".LuyenPhanXaActivity" />
-        <activity
-            android:name=".ChuyenTiepActivity"
-            android:theme="@style/Base.Theme.AppCompat.Light.Dialog"></activity>
     </application>
 
 </manifest>
