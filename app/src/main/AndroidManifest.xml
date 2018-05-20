@@ -16,17 +16,12 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".FileChooserActivity" />
         <activity android:name=".LuyenDocActivity" />
         <activity android:name=".LuyenPhanXaActivity" />
-        <activity android:name=".NewCauPhanXaActivity"/>
-        <activity
-            android:name=".ChuyenTiepActivity"
-            android:theme="@style/Base.Theme.AppCompat.Light.Dialog"></activity>
     </application>
 
 </manifest>
