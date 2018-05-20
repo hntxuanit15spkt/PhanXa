@@ -19,12 +19,15 @@ import java.util.Locale;
 
 import vn.com.canhtoan.model.CauPhanXa;
 
+import static java.lang.Compiler.enable;
+
 public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     ArrayList<CauPhanXa> dsCauPhanXa;
+    String cauTraLoi;
 
     ImageButton btnLuyenPhanXaBack, btnLuyenPhanXaNext, btnLuyenPhanXaSound;
-    TextView txtCauHoi;
+    TextView txtCauHoi, txtCauTraLoi;
     int position = 0, soCauTraLoiDung = 0;
     Intent intent;
     TextToSpeech mTts;
@@ -39,6 +42,7 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
 
     private void addControls() {
         txtCauHoi = findViewById(R.id.txtCauHoi);
+        txtCauTraLoi = findViewById(R.id.txtCauTraLoi);
         btnLuyenPhanXaBack = findViewById(R.id.btnLuyenPhanXaBack);
         btnLuyenPhanXaNext = findViewById(R.id.btnLuyenPhanXaNext);
         btnLuyenPhanXaSound = findViewById(R.id.btnLuyenPhanXaSound);
@@ -62,6 +66,12 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
                 evNext();
             }
         });
+        btnLuyenPhanXaSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                speakText(cauTraLoi);
+            }
+        });
     }
 
     private void startLuyenDoc() {
@@ -78,8 +88,8 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
                 txtCauHoi.setText(dsCauPhanXa.get(0).getCauHoi());
-                disable();
-                speakText();
+                hiden();
+                speakText(dsCauPhanXa.get(position).getCauHoi());
                 startAutoSpeech();
             }
         });
@@ -90,8 +100,10 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
         position++;
         if (position < dsCauPhanXa.size()){
             txtCauHoi.setText(dsCauPhanXa.get(position).getCauHoi());
-            disable();
-            speakText();
+            hiden();
+            txtCauTraLoi.setText("Hãy đọc và trả lời thật nhanh câu hỏi phía trên!");
+            cauTraLoi = "You don't replay";
+            speakText(dsCauPhanXa.get(position).getCauHoi());
             startAutoSpeech();
         }
         else {
@@ -99,13 +111,19 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
         }
     }
 
-    private void disable(){
-        btnLuyenPhanXaSound.setClickable(false);
+    private void hiden(){
+        btnLuyenPhanXaSound.setEnabled(false);
         btnLuyenPhanXaNext.setVisibility(View.INVISIBLE);
     }
 
-    private void speakText() {
-        mTts.speak(dsCauPhanXa.get(position).getCauHoi(), TextToSpeech.QUEUE_FLUSH, null);
+    private void dislay() {
+        txtCauTraLoi.setText(dsCauPhanXa.get(position).getCauTraLoi2());
+        btnLuyenPhanXaSound.setEnabled(true);
+        btnLuyenPhanXaNext.setVisibility(View.VISIBLE);
+    }
+
+    private void speakText(String input) {
+        mTts.speak(input, TextToSpeech.QUEUE_FLUSH, null);
     }
 
     private void startAutoSpeech() {
@@ -152,7 +170,7 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
                 }
                 else {
                     Toast.makeText(LuyenPhanXaActivity.this, "Không có câu trả lời!", Toast.LENGTH_SHORT).show();
-                    btnLuyenPhanXaNext.setVisibility(View.VISIBLE);
+                    dislay();
                 }
             }
             case 88: {
@@ -168,18 +186,17 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
     }
 
     private void testResult(ArrayList result) {
-        String input = (String) result.get(0);
+        cauTraLoi = (String) result.get(0);
         String output1 = dsCauPhanXa.get(position).getCauTraLoi1();
         String output2 = dsCauPhanXa.get(position).getCauTraLoi2();
-        if ((input.toLowerCase()).equals(output1.toLowerCase()) || (input.toLowerCase()).equals(output2.toLowerCase())){
+        if ((cauTraLoi.toLowerCase()).equals(output1.toLowerCase()) || (cauTraLoi.toLowerCase()).equals(output2.toLowerCase())){
             Toast.makeText(LuyenPhanXaActivity.this, "Bạn đã trả lời chính xác!", Toast.LENGTH_SHORT).show();
             soCauTraLoiDung++;
         }
         else {
             Toast.makeText(LuyenPhanXaActivity.this, "Bạn trả lời chưa đúng!", Toast.LENGTH_SHORT).show();
         }
-        btnLuyenPhanXaSound.setClickable(true);
-        btnLuyenPhanXaNext.setVisibility(View.VISIBLE);
+        dislay();
     }
 
     private void finishLuyenPhanXa() {
@@ -205,7 +222,7 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
         dsCauPhanXa.add(new CauPhanXa("Where are you from?","Viet Nam", "I from Viet Nam"));
         dsCauPhanXa.add(new CauPhanXa("What is your hobby?","Reading book", "My hobby is reading book"));
         dsCauPhanXa.add(new CauPhanXa("1 + 1 = ?","2", "two"));
-        dsCauPhanXa.add(new CauPhanXa("Are you like American?","Yes", "Yes I am"));
+        dsCauPhanXa.add(new CauPhanXa("Do you like American?","Yes", "Yes I do"));
         dsCauPhanXa.add(new CauPhanXa("Are you tired?","Yes", "Yes I am"));
     }
 
