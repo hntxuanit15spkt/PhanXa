@@ -10,24 +10,22 @@ import vn.com.canhtoan.Database.Converter.DateConverter;
 import vn.com.canhtoan.Database.DataAccessObject.CauDocCuaNguoiHocDAO;
 import vn.com.canhtoan.Database.DataAccessObject.CauDocDAO;
 import vn.com.canhtoan.Database.DataAccessObject.CauPhanXaDAO;
-import vn.com.canhtoan.Database.DataAccessObject.LoaiMucDoDAO;
-import vn.com.canhtoan.Database.DataAccessObject.MucDoDAO;
+import vn.com.canhtoan.Database.DataAccessObject.MucDoPhanXaDAO;
 import vn.com.canhtoan.Database.DataAccessObject.UserDAO;
 import vn.com.canhtoan.Database.DataAccessObject.User_CauDocDAO;
 import vn.com.canhtoan.Database.DataAccessObject.User_CauPhanXaDAO;
 import vn.com.canhtoan.Database.Entity.CauDocCuaNguoiHocEntity;
 import vn.com.canhtoan.Database.Entity.CauDocEntity;
 import vn.com.canhtoan.Database.Entity.CauPhanXaEntity;
-import vn.com.canhtoan.Database.Entity.LoaiMucDoEntity;
-import vn.com.canhtoan.Database.Entity.MucDoEntity;
+import vn.com.canhtoan.Database.Entity.MucDoPhanXaEntity;
 import vn.com.canhtoan.Database.Entity.UserEntity;
 import vn.com.canhtoan.Database.Entity.User_CauDocEntity;
 import vn.com.canhtoan.Database.Entity.User_CauPhanXaEntity;
 
 @Database(entities = {CauDocCuaNguoiHocEntity.class, CauDocEntity.class,
-        CauPhanXaEntity.class, LoaiMucDoEntity.class,
-        MucDoEntity.class, User_CauDocEntity.class,
-        User_CauPhanXaEntity.class, UserEntity.class}, version = 1)
+        CauPhanXaEntity.class,
+        MucDoPhanXaEntity.class, User_CauDocEntity.class,
+        User_CauPhanXaEntity.class, UserEntity.class}, version = 3)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -37,8 +35,13 @@ public abstract class AppDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
+                    /*Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase.class)
+                            .allowMainThreadQueries()
+                            .build();*/
+
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, "PhanXa_Database.db")
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }
@@ -72,9 +75,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract User_CauDocDAO user_cauDocDAO();
 
-    public abstract MucDoDAO mucDoDAO();
-
-    public abstract LoaiMucDoDAO loaiMucDoDAO();
+    public abstract MucDoPhanXaDAO mucDoPhanXaDAO();
 
     //private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
 

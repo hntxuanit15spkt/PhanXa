@@ -24,7 +24,7 @@ public interface CauDocDAO {
     LiveData<List<CauDocEntity>> getAllCauDocs();
 
     @Insert(onConflict = REPLACE)
-    public void insertCauDoc(CauDocEntity caudoc);
+    public void insert(CauDocEntity caudoc);
 
     @Insert(onConflict = REPLACE)
     public void insertCauDocs(CauDocEntity... caudocs);

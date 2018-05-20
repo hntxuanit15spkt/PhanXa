@@ -1,14 +1,36 @@
+/*
+ * Copyright 2017, The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package vn.com.canhtoan.Database.utils;
 
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
+
 import java.util.Calendar;
 import java.util.Date;
 
 import vn.com.canhtoan.Database.AppDatabase;
+import vn.com.canhtoan.Database.Entity.CauDocEntity;
+import vn.com.canhtoan.Database.Entity.CauPhanXaEntity;
+import vn.com.canhtoan.Database.Entity.MucDoPhanXaEntity;
 
 public class DatabaseInitializer {
+
+    // Simulate a blocking operation delaying each Loan insertion with a delay:
     private static final int DELAY_MILLIS = 500;
 
     public static void populateAsync(final AppDatabase db) {
@@ -18,56 +40,58 @@ public class DatabaseInitializer {
     }
 
     public static void populateSync(@NonNull final AppDatabase db) {
-        //populateWithTestData(db);
+        populateWithTestData(db);
     }
 
-    /*private static void addLoan(final AppDatabase db, final String id,
-                                final User user, final Book book, Date from, Date to) {
-        Loan loan = new Loan();
-        loan.id = id;
-        loan.bookId = book.id;
-        loan.userId = user.id;
-        loan.startTime = from;
-        loan.endTime = to;
-        db.loanModel().insertLoan(loan);
-    }*/
-
-    /*private static Book addBook(final AppDatabase db, final String id, final String title) {
-        Book book = new Book();
-        book.id = id;
-        book.title = title;
-        db.bookModel().insertBook(book);
-        return book;
-    }*/
-
-    /*private static User addUser(final AppDatabase db, final String id, final String name,
-                                final String lastName, final int age) {
-        User user = new User();
-        user.id = id;
-        user.age = age;
-        user.name = name;
-        user.lastName = lastName;
-        db.userModel().insertUser(user);
-        return user;
+    private static CauPhanXaEntity addCauPhanXa(final AppDatabase db, final String question,
+                                                final String answer, final double time,final int id_mucdo) {
+        CauPhanXaEntity cauPhanXaEntity = new CauPhanXaEntity();
+        cauPhanXaEntity.question = question;
+        cauPhanXaEntity.answer = answer;
+        cauPhanXaEntity.time = time;
+        cauPhanXaEntity.id_mucdo = id_mucdo;
+        db.cauphanxaDao().insert(cauPhanXaEntity);
+        return cauPhanXaEntity;
     }
 
-    private static void populateWithTestData(AppDatabase db) {
-        db.loanModel().deleteAll();
-        db.userModel().deleteAll();
-        db.bookModel().deleteAll();
+    private static MucDoPhanXaEntity addMucDo(final AppDatabase db, final String name) {
+        MucDoPhanXaEntity mucDoEntity = new MucDoPhanXaEntity();
+        mucDoEntity.name = name;
+        db.mucDoPhanXaDAO().insert(mucDoEntity);
+        return mucDoEntity;
+    }
 
-        User user1 = addUser(db, "1", "Jason", "Seaver", 40);
-        User user2 = addUser(db, "2", "Mike", "Seaver", 12);
+    private static CauDocEntity addCauDoc(final AppDatabase db, final String sentence,
+                                          final int sound, final int time) {
+        CauDocEntity cauDocEntity = new CauDocEntity();
+        cauDocEntity.sentence = sentence;
+        cauDocEntity.sound = sound;
+        cauDocEntity.time = time;
+        db.cauDocDAO().insert(cauDocEntity);
+        return cauDocEntity;
+    }
+
+    private static void populateWithTestData(@NonNull final AppDatabase db) {
+        addCauDoc(db,"Are they the same?",0, 2);
+        addCauDoc(db,"Are you afraid?",0, 2);
+        addCauDoc(db,"Are you going to attend their wedding?",0, 4);
+        addCauDoc(db,"Are you OK?",0, 2);
+        addCauDoc(db,"Are you sick?",0, 2);
+        addCauDoc(db,"Behind the bank",0, 2);
+        addCauDoc(db,"Can I borrow some money?",0, 3);
+        addMucDo(db,"De");
+        addMucDo(db,"Trung binh");
+        addMucDo(db,"Kho");
+        addCauPhanXa(db, "How old are you?", "I'm 21 years old", 1, 1);
+        /*User user2 = addUser(db, "2", "Mike", "Seaver", 12);
         addUser(db, "3", "Carol", "Seaver", 15);
 
         Book book1 = addBook(db, "1", "Dune");
         Book book2 = addBook(db, "2", "1984");
         Book book3 = addBook(db, "3", "The War of the Worlds");
         Book book4 = addBook(db, "4", "Brave New World");
-        addBook(db, "5", "Foundation");
-        try {
-            // Loans are added with a delay, to have time for the UI to react to changes.
-
+        addBook(db, "5", "Foundation");*/
+        /*try {
             Date today = getTodayPlusDays(0);
             Date yesterday = getTodayPlusDays(-1);
             Date twoDaysAgo = getTodayPlusDays(-2);
@@ -87,8 +111,8 @@ public class DatabaseInitializer {
 
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-    }*/
+        }*/
+    }
 
     private static Date getTodayPlusDays(int daysAgo) {
         Calendar calendar = Calendar.getInstance();
@@ -106,7 +130,7 @@ public class DatabaseInitializer {
 
         @Override
         protected Void doInBackground(final Void... params) {
-            //populateWithTestData(mDb);
+            populateWithTestData(mDb);
             return null;
         }
 
