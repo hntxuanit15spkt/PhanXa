@@ -178,6 +178,7 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
         else {
             Toast.makeText(LuyenPhanXaActivity.this, "Bạn trả lời chưa đúng!", Toast.LENGTH_SHORT).show();
         }
+        txtCauTraLoi.setText(dsCauPhanXa.get(position).getCauTraLoi2());
         btnLuyenPhanXaSound.setClickable(true);
         btnLuyenPhanXaNext.setVisibility(View.VISIBLE);
     }
