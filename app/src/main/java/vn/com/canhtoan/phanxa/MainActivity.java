@@ -1,25 +1,17 @@
 package vn.com.canhtoan.phanxa;
 
-import android.arch.lifecycle.Observer;
 import android.content.DialogInterface;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import java.util.List;
 
 import vn.com.canhtoan.Database.AppDatabase;
-import vn.com.canhtoan.Database.Entity.CauPhanXaEntity;
 import vn.com.canhtoan.Database.utils.DatabaseInitializer;
 import vn.com.canhtoan.ViewModel.CauPhanXaViewModel;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -92,21 +84,58 @@ public class MainActivity extends AppCompatActivity {
 
     private void xuLyLuyenDoc() {
         AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-        alert.setTitle("Bạn chuẩn bị luyện đọc!");
-        alert.setMessage("Bạn có muốn thêm dữ liệu");
-        alert.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+        alert.setTitle("Hướng dẫn");
+        alert.setMessage("Bạn hãy đọc theo câu được hiển thị trên màn hình thật nhanh nhé vì thời gian là có hạn");
+        alert.setNegativeButton("OK, Đã hiểu", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                startActivity(intent1);
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                alert.setTitle("Bạn chuẩn bị luyện đọc!");
+                alert.setMessage("Bạn có muốn thêm dữ liệu");
+                alert.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        startActivity(intent1);
+                    }
+                });
+                alert.setPositiveButton("Có, tôi muốn", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(intent2);
+                    }
+                });
+                alert.show();
             }
         });
-        alert.setPositiveButton("Có, tôi muốn", new DialogInterface.OnClickListener() {
+        alert.show();
+        /*alert.setTitle("Bạn chuẩn bị luyện đọc!");
+        alert.setMessage("Bạn có muốn thêm dữ liệu");
+        alert.setNegativeButton("Không", new DialogInterface.OnClickListener()
+
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alert.setTitle("Hướng dẫn");
+                alert.setMessage("Bạn hãy đọc theo câu được hiển thị trên màn hình thật nhanh nhé vì thời gian là có hạn");
+                alert.setNegativeButton("OK, Đã hiểu", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(intent1);
+                    }
+                });
+            }
+        });
+        alert.setPositiveButton("Có, tôi muốn", new DialogInterface.OnClickListener()
+
+        {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 startActivity(intent2);
             }
         });
-        alert.show();
+        alert.show();*/
     }
 
     private void addControls() {
