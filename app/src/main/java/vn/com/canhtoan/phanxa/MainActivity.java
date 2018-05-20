@@ -110,32 +110,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         alert.show();
-        /*alert.setTitle("Bạn chuẩn bị luyện đọc!");
-        alert.setMessage("Bạn có muốn thêm dữ liệu");
-        alert.setNegativeButton("Không", new DialogInterface.OnClickListener()
-
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                alert.setTitle("Hướng dẫn");
-                alert.setMessage("Bạn hãy đọc theo câu được hiển thị trên màn hình thật nhanh nhé vì thời gian là có hạn");
-                alert.setNegativeButton("OK, Đã hiểu", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        startActivity(intent1);
-                    }
-                });
-            }
-        });
-        alert.setPositiveButton("Có, tôi muốn", new DialogInterface.OnClickListener()
-
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                startActivity(intent2);
-            }
-        });
-        alert.show();*/
     }
 
     private void addControls() {
