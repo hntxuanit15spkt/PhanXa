@@ -27,8 +27,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/back"
-                android:background="@color/colorPrimary"/>
+                android:background="@android:color/transparent"
+                android:src="@drawable/back" />
 
         </LinearLayout>
 
@@ -45,9 +45,8 @@
                 android:layout_gravity="center"
                 android:layout_marginRight="15dp"
                 android:textColor="@color/colorAccent"
-                android:text="1/10"
+                android:text="0"
                 android:textSize="25sp" />
-
         </LinearLayout>
 
     </LinearLayout>
@@ -56,10 +55,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
-        android:weightSum="3"
-        android:orientation="vertical">
         android:orientation="vertical"
-        android:weightSum="2">
+        android:weightSum="3">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,7 +71,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:gravity="center"
-                android:text="Câu nói hiển lên ở đây nè"
+                android:text="No data"
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="30sp" />
 
@@ -88,9 +85,10 @@
 
             <TextView
                 android:id="@+id/txtLoiNoi"
-                android:text="Câu người học nói vào"
+                android:text="No data"
                 android:textSize="25sp"
                 android:textStyle="italic"
+                android:gravity="center"
                 android:textColor="@color/colorAccent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
