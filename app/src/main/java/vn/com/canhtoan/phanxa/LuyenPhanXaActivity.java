@@ -91,6 +91,7 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
                 hiden();
                 speakText(dsCauPhanXa.get(position).getCauHoi());
                 startAutoSpeech();
+                cauTraLoi = "You don't replay";
             }
         });
         alertLPX.show();
