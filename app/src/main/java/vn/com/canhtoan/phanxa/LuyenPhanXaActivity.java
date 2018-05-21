@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Random;
 
 import vn.com.canhtoan.model.CauPhanXa;
 
@@ -25,10 +26,12 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
 
     ArrayList<CauPhanXa> dsCauPhanXa;
     String cauTraLoi;
+    Random random = new Random();
+    ArrayList<Integer> dsExist = new ArrayList<>();
 
     ImageButton btnLuyenPhanXaBack, btnLuyenPhanXaNext, btnLuyenPhanXaSound;
     TextView txtCauHoi, txtCauTraLoi;
-    int position = 0, soCauTraLoiDung = 0;
+    int position, soCauTraLoiDung = 0;
     Intent intent;
     TextToSpeech mTts;
 
@@ -76,7 +79,7 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
 
     private void startLuyenDoc() {
         final AlertDialog.Builder alertLPX = new AlertDialog.Builder(LuyenPhanXaActivity.this);
-        alertLPX.setTitle("Bắt đầu! Bạn hãy trả lời thật nhanh các câu hỏi nhé");
+        alertLPX.setTitle("Bắt đầu! Bạn hãy lắng nghe và trả lời thật nhanh các câu hỏi nhé!");
         alertLPX.setNegativeButton("QUAY VỀ", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -87,7 +90,8 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
-                txtCauHoi.setText(dsCauPhanXa.get(0).getCauHoi());
+                randomPosition();
+                txtCauHoi.setText(dsCauPhanXa.get(position).getCauHoi());
                 hiden();
                 speakText(dsCauPhanXa.get(position).getCauHoi());
                 startAutoSpeech();
@@ -97,9 +101,26 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
         alertLPX.show();
     }
 
+    private void randomPosition() {
+        position = random.nextInt(dsCauPhanXa.size());
+        while (kiemTraTonTai()){
+            position = random.nextInt(dsCauPhanXa.size());
+        }
+        dsExist.add(position);
+    }
+
+    private boolean kiemTraTonTai() {
+        for (int c : dsExist){
+            if (position == c){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void evNext() {
-        position++;
-        if (position < dsCauPhanXa.size()){
+        if (dsExist.size() < 10){
+            randomPosition();
             txtCauHoi.setText(dsCauPhanXa.get(position).getCauHoi());
             hiden();
             txtCauTraLoi.setText("Hãy đọc và trả lời thật nhanh câu hỏi phía trên!");
@@ -218,7 +239,7 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
         dsCauPhanXa.add(new CauPhanXa("What is your name?","John", "My name is John"));
         dsCauPhanXa.add(new CauPhanXa("What is your job?","Student", "I am a student"));
         dsCauPhanXa.add(new CauPhanXa("Do you have a girl friend?","No", "No I do not"));
-        dsCauPhanXa.add(new CauPhanXa("How are you?","I am fine", "Fine"));
+        dsCauPhanXa.add(new CauPhanXa("How are you?","Fine", "I am fine"));
         dsCauPhanXa.add(new CauPhanXa("How old are you?","eighteen", "I am eighteen years old"));
         dsCauPhanXa.add(new CauPhanXa("Where are you from?","Viet Nam", "I from Viet Nam"));
         dsCauPhanXa.add(new CauPhanXa("What is your hobby?","Reading book", "My hobby is reading book"));
