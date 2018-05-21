@@ -31,10 +31,12 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
     ArrayList<String> myList = new ArrayList<>();
 
     ArrayList<String> listCau;
+    ArrayList<Integer> dsExist;
     BufferedReader bufferedReader;
     String line;
+    Random random = new Random();
 
-    int position = 1, soCauDung = 0, perfect = 0, timeout = 2500, cauHienTai = 1;
+    int position = 1, soCauDung = 0, perfect = 0, timeout = 2500, cauHienTai = 1, viTriHienTai = 1;
     boolean docDungLanThuNhat = true, docLanThuNhat = true;
 
     TextToSpeech mTts;
@@ -97,7 +99,7 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
         btnLuyenDocSpeak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSpeechInput(listCau.get(position - 1));
+                getSpeechInput(listCau.get(position));
             }
         });
         btnLuyenDocSound.setOnClickListener(new View.OnClickListener() {
@@ -122,14 +124,32 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
-                txtIndex.setText(1 + "/" + listCau.size());
-                txtCauNoi.setText(listCau.get(0));
+                txtIndex.setText(1 + "/" + 10);
+                randomPosition();
+                txtCauNoi.setText(listCau.get(position));
                 txtLoiNoi.setText("");
                 speakText();
                 startAutoSpeech();
             }
         });
         alertLD.show();
+    }
+
+    private void randomPosition() {
+        position = random.nextInt(listCau.size());
+        while (kiemTraTonTai()){
+            position = random.nextInt(listCau.size());
+        }
+        dsExist.add(position);
+    }
+
+    private boolean kiemTraTonTai() {
+        for (int c : dsExist){
+            if (position == c){
+                return true;
+            }
+        }
+        return false;
     }
 
     // Auto start Speech to text
@@ -142,7 +162,7 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
 
             @Override
             public void onFinish() {
-                getSpeechInput(listCau.get(position - 1));
+                getSpeechInput(listCau.get(position));
             }
         };
         timer.start();
@@ -151,20 +171,21 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
     // Speak ever sentences
     private void speakText() {
         //mTts.speak(line, TextToSpeech.QUEUE_FLUSH, null);
-        mTts.speak(listCau.get(position - 1), TextToSpeech.QUEUE_FLUSH, null);
+        mTts.speak(listCau.get(position), TextToSpeech.QUEUE_FLUSH, null);
     }
 
     // Ever next that is set next value from txt file into textview to display for speak practice
     //Version cua Toan
     // Seeson 2
     private void evNext() {
-        position++;
-        if (position <= listCau.size()) {
+        if (dsExist.size() < 10) {
+            viTriHienTai++;
+            randomPosition();
             txtLoiNoi.setText("");
-            txtCauNoi.setText(listCau.get(position - 1));
-            txtIndex.setText(position + "/" + listCau.size());
+            txtCauNoi.setText(listCau.get(position));
+            txtIndex.setText(dsExist.size() + "/" + 10);
             speakText();
-            if (position > cauHienTai) {
+            if (viTriHienTai > cauHienTai) {
                 cauHienTai++;
                 docLanThuNhat = docDungLanThuNhat = true;
                 startAutoSpeech();
@@ -196,15 +217,15 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
     }*/
 
     private void evPrevous() {
-        position--;
-        if (position > 0){
+        viTriHienTai--;
+        if (viTriHienTai > 0){
             txtLoiNoi.setText("");
-            txtCauNoi.setText(listCau.get(position-1));
-            txtIndex.setText(position+"/" + listCau.size());
+            txtCauNoi.setText(listCau.get(dsExist.get(viTriHienTai-1)));
+            txtIndex.setText(viTriHienTai + "/" + 10);
             docLanThuNhat = docDungLanThuNhat = false;
             speakText();
         }else {
-            position++;
+            viTriHienTai++;
             Toast.makeText(LuyenDocActivity.this, "Đã đến câu đầu tiên!", Toast.LENGTH_SHORT).show();
         }
     }
@@ -282,7 +303,7 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
     private void testResult(ArrayList result) {
         String input = (String) result.get(0);
         //if ((input.toLowerCase()).equals(line.toLowerCase())){
-        if ((input.toLowerCase()).equals(listCau.get(position-1).toLowerCase())){
+        if ((input.toLowerCase()).equals(listCau.get(position).toLowerCase())){
             Toast.makeText(LuyenDocActivity.this, "Chúc mừng, bạn đã đọc chính xác", Toast.LENGTH_SHORT).show();
             if (docDungLanThuNhat) {
                 soCauDung++;
@@ -292,7 +313,7 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
                 perfect++;
                 docLanThuNhat = false;
             }
-            if (position == 10) {
+            if (viTriHienTai == 10) {
                 finishLuyenDoc();
             }
         }
@@ -322,7 +343,6 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
                 txtIndex.setText(1+"/10");
                 soCauDung = perfect = 0;
                 docLanThuNhat = docDungLanThuNhat = true;
-                addData();
                 startLuyenDoc();
             }
         });
