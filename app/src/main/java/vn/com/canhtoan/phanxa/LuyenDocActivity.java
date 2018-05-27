@@ -144,10 +144,17 @@ public class LuyenDocActivity extends AppCompatActivity implements TextToSpeech.
     }
 
     private boolean kiemTraTonTai() {
-        for (int c : dsExist){
-            if (position == c){
-                return true;
+        if(dsExist != null)
+        {
+            for (int c : dsExist){
+                if (position == c){
+                    return true;
+                }
             }
+        }
+        else
+        {
+            dsExist = new ArrayList<>();
         }
         return false;
     }
