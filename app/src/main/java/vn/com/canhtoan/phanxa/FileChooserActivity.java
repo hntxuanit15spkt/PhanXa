@@ -162,6 +162,5 @@ public class FileChooserActivity extends Activity {
         } else {
             Toast.makeText(this, "Khong co file", Toast.LENGTH_SHORT).show();
         }
-
     }
 }

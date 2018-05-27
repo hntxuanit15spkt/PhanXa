@@ -79,7 +79,8 @@ public class LuyenPhanXaActivity extends AppCompatActivity implements TextToSpee
 
     private void startLuyenDoc() {
         final AlertDialog.Builder alertLPX = new AlertDialog.Builder(LuyenPhanXaActivity.this);
-        alertLPX.setTitle("Bắt đầu! Bạn hãy lắng nghe và trả lời thật nhanh các câu hỏi nhé!");
+        alertLPX.setTitle("Bắt đầu!");
+        alertLPX.setMessage("Bạn hãy lắng nghe và trả lời thật nhanh các câu hỏi nhé!");
         alertLPX.setNegativeButton("QUAY VỀ", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
